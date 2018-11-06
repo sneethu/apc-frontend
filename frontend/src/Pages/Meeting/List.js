@@ -98,14 +98,14 @@ class ListMeeting extends Component {
     createMeeting = () => {
         const {meeting} = this.props;
         const data = toData(this.meetingForm);
-        meeting.updateMeeting(data);
+        meeting.createMeeting(data);
         this.createModalOpen = false;
     }
 
     updateMeeting = () => {
         const {meeting} = this.props;
         const data = toData(this.meetingForm);
-        meeting.createMeeting(data);
+        meeting.updateMeeting(data);
         this.changeModalOpen = false;
     }
 

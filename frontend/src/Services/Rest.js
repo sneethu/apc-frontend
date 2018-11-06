@@ -1,10 +1,8 @@
 import axios from 'axios';
 
-const LOGIN_PATH = "";
-const LOGOUT_PATH = "";
-const MEETING_PATH = "";
-const CREATE_MEETING_PATH = "";
-const UPDATE_MEETING_PATH = "";
+const LOGIN_PATH = "login";
+const LOGOUT_PATH = "logout";
+const MEETING_PATH = "meeting";
 
 class Rest {
 
@@ -21,11 +19,11 @@ class Rest {
     }
 
     async createMeeting(event) {
-        return axios.post(CREATE_MEETING_PATH,event)
+        return axios.post(MEETING_PATH,event)
     }
 
     async updateMeeting(event) {
-        return axios.put(UPDATE_MEETING_PATH,event)
+        return axios.put(MEETING_PATH+"/"+event.id,event)
     }
 
 }

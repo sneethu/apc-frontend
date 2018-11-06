@@ -29,7 +29,7 @@ class Meeting {
                 this.endDate = mEnd;
             }
         } catch(error) {
-            console.log('Failing request meetings '+error);
+            console.log('Failing to request meetings '+error);
         }
     }
 
@@ -37,15 +37,15 @@ class Meeting {
         try {
             await rest.createMeeting(event);
         } catch(error) {
-            console.log('Failing request meetings '+error);
+            console.log('Failing to create meetings '+error);
         }
     }
 
     async updateMeeting(event) {
         try {
-            await rest.createMeeting(event);
+            await rest.updateMeeting(event);
         } catch(error) {
-            console.log('Failing request meetings '+error);
+            console.log('Failing to update meetings '+error);  
         }
     }
 }
