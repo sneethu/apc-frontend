@@ -122,14 +122,14 @@ class ListMeeting extends Component {
                     <MeetingPage meetingForm={this.meetingForm} title='Create Meeting'/>
                     <div>
                         <button onClick={this.createMeeting}>Create</button>
-                        <button onClick={this.updateMeeting}>Cancel</button>
+                        <button onClick={this.cancel}>Cancel</button>
                     </div>
                 </Modal>
                 <Modal isOpen={this.changeModalOpen} appElement={root}>
                     <MeetingPage meetingForm={this.meetingForm} title='Change Meeting'/>
                     <div>
                         <button onClick={this.updateMeeting}>Update</button>
-                        <button onClick={this.updateMeeting}>Cancel</button>
+                        <button onClick={this.cancel}>Cancel</button>
                     </div>
                 </Modal>
                 <Calendar handleSelectSlot={this.handleSelectSlot} handleSelectEvent={this.handleSelectEvent}/>

@@ -7,12 +7,10 @@ import 'react-datetime/css/react-datetime.css';
 const Datetime = observer(({field,...rest}) => (
     <div {...rest}>
         <div>
-            <label htmlFor={field.id}>
+            <label htmlFor={field.id}>   
                 {field.label}
             </label>
-            <div>
-                <DatetimePicker {...field.bind()}/>
-            </div>
+            <DatetimePicker {...field.bind()}/>   
         </div>
         <div>
             {field.error}
