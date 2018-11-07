@@ -84,6 +84,7 @@ class ListMeeting extends Component {
         this.handleSelectEvent = this.handleSelectEvent.bind(this);
         this.createMeeting = this.createMeeting.bind(this);
         this.updateMeeting = this.updateMeeting.bind(this);
+        this.onNavigate = this.onNavigate.bind(this);
     }
 
     handleSelectSlot = ({ start, end }) => {
@@ -115,17 +116,27 @@ class ListMeeting extends Component {
         this.createModalOpen = false;
     }
 
+    onNavigate = (date) => {
+        console.log("----> "+date);
+        this._loadMeeting(moment(date));
+    }
+    
+
     componentDidMount = () => {
         const now = moment();
-        const month = now.month();
-        const year = now.year();
+        this._loadMeeting(now);
+    }
+    
+    _loadMeeting(date) {
+        const month = date.month();
+        const year = date.year();
         const day = 1;
         const start = moment({year, month, day})
         const end = moment({year, month, day}).add(1,'months');
         console.log("start "+start.format());
         console.log("end "+end.format());
         this.props.meeting.getMeeting(start,end);
-    }  
+    }
 
     render() {
         const root = document.getElementById('root');
@@ -145,7 +156,7 @@ class ListMeeting extends Component {
                         <button onClick={this.cancel}>Cancel</button>
                     </div>
                 </Modal>
-                <Calendar handleSelectSlot={this.handleSelectSlot} handleSelectEvent={this.handleSelectEvent}/>
+                <Calendar handleSelectSlot={this.handleSelectSlot} handleSelectEvent={this.handleSelectEvent} onNavigate={this.onNavigate}/>
             </div>
         )
     }

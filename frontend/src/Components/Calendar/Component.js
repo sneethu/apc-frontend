@@ -20,7 +20,7 @@ const onSelecting = () => true;
 
 const DraggableCalendar = withDragAndDrop(BigCalendar)
 
-const Calendar = ({meeting, handleSelectSlot,handleSelectEvent}) => {
+const Calendar = ({meeting, handleSelectSlot,handleSelectEvent,onNavigate}) => {
     return (
         <div>
             <BigCalendar
@@ -28,13 +28,12 @@ const Calendar = ({meeting, handleSelectSlot,handleSelectEvent}) => {
                 resizable
                 localizer={localizer}
                 events={meeting.events}
-                startAccessor="start" 
-                endAccessor="end"
                 onSelectEvent={handleSelectEvent}
                 onSelectSlot={handleSelectSlot}
                 onEventDrop={moveEvent}
                 onEventResize={onEventResize}
                 onSelecting={onSelecting}
+                onNavigate={onNavigate}
                 />
         </div>    
     )
