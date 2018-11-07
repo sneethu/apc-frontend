@@ -1,0 +1,39 @@
+{
+  "generator-jhipster": {
+    "applicationType": "microservice",
+    "gitCompany": "",
+    "baseName": "APCMeetings",
+    "packageName": "com.ingg.meetings.app",
+    "packageFolder": "com/ingg/meetings/app",
+    "serverPort": 8080,
+    "serviceDiscoveryType": "eureka",
+    "authenticationType": "jwt",
+    "uaaBaseName": "../uaa",
+    "cacheProvider": "no",
+    "enableHibernateCache": false,
+    "websocket": false,
+    "databaseType": "mongodb",
+    "devDatabaseType": "mongodb",
+    "prodDatabaseType": "mongodb",
+    "searchEngine": false,
+    "enableSwaggerCodegen": false,
+    "messageBroker": false,
+    "buildTool": "maven",
+    "useSass": false,
+    "clientPackageManager": "npm",
+    "testFrameworks": [
+      "cucumber"
+    ],
+    "enableTranslation": false,
+    "nativeLanguage": "en",
+    "languages": [
+      "en"
+    ],
+    "clientFramework": "angularX",
+    "jhiPrefix": "jhi",
+    "jhipsterVersion": "5.6.1",
+    "jwtSecretKey": "NzE0NDg2ODFmMDJlODk2ZWRhNDEyNzdkNTU5ODc5MzVhMDU3YzNkMTcyOGNiMGYyMzU2ZTc2MTQzYTA1NmRjOTE3NDE4ZTk2ZWRlMzc4ZjY5YWYyMDg5ODQ2ZTA1NzYyMDA0MTM1M2EyN2UyNmQwMjc4ODRkOGY0OGQxODEzMjg=",
+    "skipClient": true,
+    "skipUserManagement": true
+  }
+}
