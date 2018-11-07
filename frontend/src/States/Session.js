@@ -1,6 +1,6 @@
 import validatorjs from 'validatorjs';
 import MobxReactForm from 'mobx-react-form';
-import {decorate, computed, action} from "mobx";
+import {decorate, observable, action} from "mobx";
 
 import Rest from '../Services/Rest'
 import tokenManager from '../Services/TokenManager';
@@ -21,24 +21,6 @@ const fields = [{
     rules: 'required|string|between:5,25',
   }];
 
-const hooks = {
-    async onSuccess(form) {
-      console.log('Form Values!', form.values());
-      const {email,password} = form.values();
-      try {
-        const response = await rest.login(email,password);
-        tokenManager.setToken(response.data.token);
-        
-      } catch(error) {
-        console.log('Failing login '+error);
-        form.invalidate(error.message);
-      }
-    },
-    onError(form) {
-      console.log('All form errors', form.errors());
-    }
-  }
-
 class LoginForm extends MobxReactForm {
 
     options() {
@@ -49,27 +31,47 @@ class LoginForm extends MobxReactForm {
 
 }
 
-class Session {
-    loginForm = new LoginForm({ fields }, { plugins, hooks });
-    
-    get isActive() {
-        return tokenManager.isValidateToken();
+class LoginSession {
+    hooks = {
+      async onSuccess(form) {
+        try {
+          console.log('Form Values!', form.values());
+          const {email,password} = form.values();
+          this.login(email,password) 
+        } catch(error) {
+          console.log('Failing login '+error);
+          form.invalidate(error.message);
+        }
+      },
+      onError(form) {
+        console.log('All form errors', form.errors());
+      }
     }
+
+    loginForm = new LoginForm({ fields }, { plugins, hooks: this.hook });
+
+    isActive = tokenManager.isValidateToken();
     
+    async login(email,password) {     
+        const response = await rest.login(email,password);
+        tokenManager.setToken(response.data.token);
+    }
+
     async logout() {
       try {
         await rest.logout();
-        tokenManager.setToken(null);
+        tokenManager.invalidateToken();
+        this.isActive = tokenManager.isValidateToken();
       } catch(error) {
         console.log('Failing logout '+error);
       }
     }
 }
 
-decorate(Session,{
-    isActive: computed,
-    logout: action
+decorate(LoginSession,{
+    logout: action,
+    isActive: observable
   })
 
-export default Session;
+export default LoginSession;
 

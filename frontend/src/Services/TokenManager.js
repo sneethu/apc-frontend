@@ -8,10 +8,10 @@ export default {
     },
 
    isValidateToken: function() {
-        return !!axios.defaults.headers.common['Authorization'];
+        return axios.defaults.headers.common['Authorization'];
     },
 
     invalidateToken: function() {
-        delete axios.defaults.headers.common["Authorization"];
+        delete axios.defaults.headers.common['Authorization'];
     }
 }

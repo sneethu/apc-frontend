@@ -7,6 +7,7 @@ import './App.css';
 import LoginPage from './Pages/Login/Page'; 
 import Main from './Components/Main/Component';
 import ListMeeting from './Pages/Meeting/List';
+import Menu from './Components/Menu/Component'
 
 class App extends Component {
   render() {
@@ -22,6 +23,7 @@ class App extends Component {
           <Route path="/registration" component={RegistrationPage}/>
           <Route path="/" exact component={RegistrationPage}/>
           */}
+          <Menu/>
           <ListMeeting/>
         </Main>
       </div>
