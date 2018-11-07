@@ -23,7 +23,7 @@ class Meeting {
             const checkEndDate = ((!this.endDate) | (mEnd.isAfter(this.start)));
 
             if( checkStartDate && checkEndDate ) {
-                const response = await rest.getMeetings(start,end);
+                const response = await rest.getMeetings(start.format(),end.format());
                 this.events = merge(this.events,response.data.meetings);
                 this.startDate = mStart;
                 this.endDate = mEnd;

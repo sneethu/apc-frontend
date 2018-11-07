@@ -4,6 +4,7 @@ import {decorate, observable} from "mobx";
 import { observer,inject } from 'mobx-react';
 import validatorjs from 'validatorjs';
 import MobxReactForm from 'mobx-react-form';
+import moment from 'moment';
 
 import Calendar from '../../Components/Calendar/Component';
 import MeetingPage from './Page';
@@ -113,6 +114,18 @@ class ListMeeting extends Component {
         this.changeModalOpen = false;
         this.createModalOpen = false;
     }
+
+    componentDidMount = () => {
+        const now = moment();
+        const month = now.month();
+        const year = now.year();
+        const day = 1;
+        const start = moment({year, month, day})
+        const end = moment({year, month, day}).add(1,'months');
+        console.log("start "+start.format());
+        console.log("end "+end.format());
+        this.props.meeting.getMeeting(start,end);
+    }  
 
     render() {
         const root = document.getElementById('root');

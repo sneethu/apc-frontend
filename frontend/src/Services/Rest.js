@@ -15,7 +15,7 @@ class Rest {
     }
 
     async getMeetings(start,end) {
-        return axios.get(MEETING_PATH)
+        return axios.get(MEETING_PATH+"?start="+start+"&end="+end)
     }
 
     async createMeeting(event) {
