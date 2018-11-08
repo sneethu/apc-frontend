@@ -57,6 +57,7 @@ class LoginSession {
     async login(email,password) {     
         const response = await rest.login(email,password);
         tokenManager.setToken(response.data.token);
+        this.isActive = tokenManager.isValidateToken();
     }
 
     async logout() {
