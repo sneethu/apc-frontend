@@ -32,25 +32,27 @@ class LoginForm extends MobxReactForm {
 }
 
 class LoginSession {
-    hooks = {
-      async onSuccess(form) {
-        try {
-          console.log('Form Values!', form.values());
-          const {email,password} = form.values();
-          this.login(email,password) 
-        } catch(error) {
-          console.log('Failing login '+error);
-          form.invalidate(error.message);
-        }
-      },
-      onError(form) {
-        console.log('All form errors', form.errors());
+
+    constructor() {
+      this.isActive = tokenManager.isValidateToken();
+      this.onSuccess = this.onSuccess.bind(this);
+      this.loginForm = new LoginForm({ fields }, { plugins, hooks: this });
+    }
+
+    async onSuccess(form) {
+      try {
+        console.log('Form Values!', form.values());
+        const {email,password} = form.values();
+        this.login(email,password) 
+      } catch(error) {
+        console.log('Failing login '+error);
+        form.invalidate(error.message);
       }
     }
 
-    loginForm = new LoginForm({ fields }, { plugins, hooks: this.hook });
-
-    isActive = tokenManager.isValidateToken();
+    onError(form) {
+      console.log('All form errors', form.errors());
+    }
     
     async login(email,password) {     
         const response = await rest.login(email,password);

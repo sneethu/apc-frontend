@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-axios.defaults.headers.common['Authorization'] = "gg"
+//axios.defaults.headers.common['Authorization'] = "gg"
 
 export default {
     setToken : function (token) {
