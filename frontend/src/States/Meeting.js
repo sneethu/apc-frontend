@@ -3,8 +3,10 @@ import moment from 'moment';
 
 import Rest from '../Services/Rest'
 import demo_events from './Events'
+import {Websocket,NEW_MEETING,UPDATE_MEETINGS} from '../Services/Websocket';
  
 const rest = new Rest();
+const eventEmitter = Websocket('meeting');
 
 const merge = (events, newEvents) => {
     return events.concat(newEvents).filter(function(item, pos, self) {
@@ -14,6 +16,15 @@ const merge = (events, newEvents) => {
 
 class Meeting {
     events = demo_events
+
+    constructor(props) {
+        eventEmitter.on(UPDATE_MEETINGS,(updateEvents) => {
+            this.events = merge(this.events,updateEvents);
+        });
+        eventEmitter.on(NEW_MEETING,(newEvens) => {
+            this.events.concat(newEvens);
+        });
+    }
 
     async getMeeting(start,end) {
         try {
