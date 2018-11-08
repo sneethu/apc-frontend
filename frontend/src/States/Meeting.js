@@ -6,7 +6,7 @@ import demo_events from './Events'
 import {Websocket,NEW_MEETING,UPDATE_MEETINGS} from '../Services/Websocket';
  
 const rest = new Rest();
-const eventEmitter = Websocket('meeting');
+const {eventEmitter,send} = Websocket('meeting');
 
 const merge = (events, newEvents) => {
     return events.concat(newEvents).filter(function(item, pos, self) {

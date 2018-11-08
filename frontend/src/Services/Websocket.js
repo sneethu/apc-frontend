@@ -15,5 +15,10 @@ export const Websocket = (room) => {
         console.log('meeting '+data);
         eventEmitter.emit(data.type,data.meeting);
     });
-    return eventEmitter;
+    return {
+        eventEmitter,
+        send: function(type,data) {
+            sockets[room].emit(type,data);
+        }
+    };
 }
