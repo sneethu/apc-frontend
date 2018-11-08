@@ -1,5 +1,3 @@
 export const merge = (events, newEvents) => {
-    return events.concat(newEvents).filter(function(item, pos, self) {
-        return self.indexOf(item) === pos;
-    })  
+    return [...new Map(events.concat(newEvents).map((event)=>[event.id,event])).values()]
 }
