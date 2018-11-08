@@ -9,12 +9,15 @@ export const UPDATE_MEETINGS = 'UPDATE_MEETINGS';
 const sockets = {}
 
 export const Websocket = (room) => {
-    sockets[room] = io.connect(room);
+    sockets[room] = io();
     const eventEmitter = new EventEmitter();
-    sockets[room].on('event', function(data){
-        console.log('meeting '+data);
-        eventEmitter.emit(data.type,data.meeting);
-    });
+    sockets[room].on('connect', function() {
+        sockets[room].emit('room', room);
+        sockets[room].on('event', function(data){
+            console.log('meeting '+data);
+            eventEmitter.emit(data.type,data.meeting);
+        });
+     });
     return {
         eventEmitter,
         send: function(type,data) {
