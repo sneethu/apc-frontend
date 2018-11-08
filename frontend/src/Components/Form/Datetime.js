@@ -4,7 +4,7 @@ import DatetimePicker from 'react-datetime';
 
 import 'react-datetime/css/react-datetime.css';
 
-const Datetime = observer(({field,...rest}) => (
+const Datetime = ({field,...rest}) => (
     <div {...rest}>
         <div>
             <label htmlFor={field.id}>   
@@ -16,6 +16,6 @@ const Datetime = observer(({field,...rest}) => (
             {field.error}
         </div>
     </div>
-));
+);
 
-export default Datetime;
+export default observer(Datetime);

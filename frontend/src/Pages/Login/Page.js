@@ -3,7 +3,7 @@ import { observer,inject } from 'mobx-react';
 
 import Input from '../../Components/Form/Input';
 
-export default inject("session")(observer(({session}) =>{
+const Login = ({session}) =>{
     const {loginForm} = session;
     let LoginPage = null;
     if(!session.isActive) LoginPage =     
@@ -20,4 +20,6 @@ export default inject("session")(observer(({session}) =>{
         </form>
     </div>
     return LoginPage;
-}));
+}
+
+export default inject("session")(observer(Login));

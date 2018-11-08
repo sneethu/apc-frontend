@@ -1,7 +1,7 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 
-const Input = observer(({field,type,...rest}) => (
+const Input = ({field,type,...rest}) => (
     <div {...rest}>
         <div>
             <label htmlFor={field.id}>
@@ -13,6 +13,6 @@ const Input = observer(({field,type,...rest}) => (
             {field.error}
         </div>
     </div>
-));
+);
 
-export default Input;
+export default observer(Input);
