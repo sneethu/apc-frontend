@@ -15,7 +15,7 @@ class Rest {
     }
 
     async getMeetings(start,end) {
-        return axios.get(MEETING_PATH+"?start="+start+"&end="+end)
+        return axios.get(`${MEETING_PATH}?start=${start}&end=${end}`)
     }
 
     async createMeeting(event) {
@@ -23,7 +23,7 @@ class Rest {
     }
 
     async updateMeeting(event) {
-        return axios.put(MEETING_PATH+"/"+event.id,event)
+        return axios.put(`${MEETING_PATH}/${event.id}`,event)
     }
 
 }
